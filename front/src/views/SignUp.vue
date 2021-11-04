@@ -12,11 +12,8 @@
         <c-form-label for="password">Password :</c-form-label>
         <c-input   type="password" id="password"  />
       </c-form-control>
-      <c-button bg="lightgray" mt="2em" mb="1em">Log in</c-button>
-      <c-flex>
-        If you don't have an account :
-        <c-box as="button"  ><c-link as="router-link" to="/signup">Sign up</c-link></c-box>
-      </c-flex>
+      <c-button bg="lightgray" mt="2em" mb="1em">Sign Up</c-button>
+
     </c-flex>
     <c-flex>
       <Footer/>
@@ -29,9 +26,9 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 
-import { CFlex, CFormControl, CFormLabel, CInput, CButton, CLink, CBox } from '@chakra-ui/vue'
+import { CFlex, CFormControl, CFormLabel, CInput, CButton } from '@chakra-ui/vue'
 export default {
-  name: 'Login',
+  name: 'SignUp',
   components: {
     Header,
     CFlex,
@@ -39,9 +36,8 @@ export default {
     CFormControl,
     CFormLabel,
     CInput,
-    CButton,
-    CLink,
-    CBox
+    CButton
+
   }
 }
 </script>
