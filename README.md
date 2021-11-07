@@ -1,11 +1,10 @@
 # CompSell 
 
-
-
 ## Description 📕
 
-CompSell is a school project created for aweb project.
-CompSell is a website offering many computer products. This website communicates directly with a database to save the users and products of the website.
+CompSell is a school project created for a web project. This project was realized by a group of two people.
+
+CompSell is a website offering many computer products. This website communicates directly with a database to save users and products on the website.
 
 ## Technologies
 
@@ -18,7 +17,16 @@ CompSell is a website offering many computer products. This website communicates
 
 ## How-To-Use
 
-- git pull
+- `git pull https://github.com/Xihiems/projectweb.git`
+- Insert our database file in your database
+- Edit the file /app/config.js by update the const opts with your database option 
+- Open 2 terminals 
+- Set one in the back directory and the other in front directory
+- In the back terminal, Install all the packages with `npm install`
+- Run the back with `npm start` 
+- Go in the front terminal, and install all the packages with `npm install`
+- Run the front with `npm run serve`
+- Open the link and you have access to the website
 
 
 
