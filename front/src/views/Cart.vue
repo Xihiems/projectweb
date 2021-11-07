@@ -3,9 +3,9 @@
     <div>
       <Header></Header>
     </div>
-    <div><c-heading mt="1em" class="productTitle">All our product</c-heading></div>
+    <div><c-heading mt="1em" class="cartTitle">Your cart</c-heading></div>
     <c-flex ml="10em" mt="1em" w="12.5em">
-      <c-select v-model="sortType" @change="sort()" placeholder="Default">
+      <c-select v-model="sortType" @change="sort()" placeholder="Default" >
         <option value="A">Ascending price</option>
         <option value="D">Decreasing price</option>
         <option value="GPU">GPU</option>
@@ -13,7 +13,7 @@
         <option value="Motherboard">Motherboard</option>
       </c-select>
     </c-flex>
-    <c-grid templateColumns="repeat(6,1fr)" class="cgridl">
+    <c-grid templateColumns="repeat(5,1fr)" class="cgridl">
         <c-grid-item>image</c-grid-item>
         <c-grid-item>name</c-grid-item>
         <c-grid-item>brand</c-grid-item>
@@ -21,13 +21,12 @@
         <c-grid-item>price</c-grid-item>
       </c-grid>
     <div v-for="product in sortedProducts" :key="product.id">
-      <c-grid templateColumns="repeat(6,1fr)" class="cgrid">
+      <c-grid templateColumns="repeat(5,1fr)" class="cgrid">
         <c-grid-item class="citem"><img :src="product.image" alt="" class="image"></c-grid-item>
         <c-grid-item>{{product.name}}</c-grid-item>
         <c-grid-item>{{product.brand}}</c-grid-item>
         <c-grid-item>{{product.type}}</c-grid-item>
         <c-grid-item>{{product.price}}</c-grid-item>
-        <button type="button" @click="handleClick(product.id)">add to cart</button>
       </c-grid>
     </div>
     <c-flex>
@@ -37,15 +36,16 @@
 </template>
 
 <script>
-import { getProducts } from '../api/getProducts.js'
-import { addToCart } from '../api/addToCart.js'
+
+import { getCart } from '../api/getCart.js'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-
 import { CHeading, CFlex, CSelect, CGrid, CGridItem } from '@chakra-ui/vue'
 export default {
   mounted: async function () {
-    this.products = (await getProducts()).data
+    const result = await getCart()
+    console.log(result.data)
+    this.products = result.data
     this.sortedProducts = [...this.products]
   },
   data () {
@@ -55,10 +55,7 @@ export default {
       sortedProducts: []
     }
   },
-  watch: {
-
-  },
-  name: 'HomePage',
+  name: 'Cart',
   components: {
     Header,
     CHeading,
@@ -69,9 +66,6 @@ export default {
     CGridItem
   },
   methods: {
-    async handleClick (idProduct) {
-      await addToCart(idProduct)
-    },
     sort () {
       if (['GPU', 'CPU', 'Motherboard'].includes(this.sortType)) {
         this.sortedProducts = this.products.filter(p => p.type === this.sortType)
@@ -100,9 +94,11 @@ export default {
 
 .cgridl{
   font-weight: bold;
+  margin-top: 10px;
+  text-transform: uppercase;
 }
 
-.productTitle{
+.cartTitle{
   margin-top: 60px;
 }
 
@@ -112,17 +108,4 @@ export default {
   object-fit: cover;
 }
 
-button {
-        display: inline-block;
-        background-color: grey;
-        border-radius: 10px;
-        border: 4px double #cccccc;
-        color: #eeeeee;
-        text-align: center;
-        font-size: 20px;
-        padding: 10px;
-        width: 150px;
-        cursor: pointer;
-        margin: 5px;
-      }
 </style>

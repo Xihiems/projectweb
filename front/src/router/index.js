@@ -5,6 +5,7 @@ import Catalog from '../views/Catalog.vue'
 import Login from '../views/Login.vue'
 import SignUp from '../views/SignUp.vue'
 import Contact from '../views/Contact.vue'
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: Contact
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: Cart
   }
 ]
 

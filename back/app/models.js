@@ -4,4 +4,12 @@ const Products = Bookshelf.model("Products", {
   tableName: "products",
 });
 
-export { Products };
+const Users = Bookshelf.model("Users", {
+  tableName: "users",
+});
+
+const Cart = Bookshelf.model("Cart", {
+  tableName: "cart"
+})
+
+export { Products, Users, Cart };
